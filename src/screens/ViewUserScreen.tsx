@@ -15,7 +15,7 @@ const emptyUser : User = {
   address: '',
 };
 
-function UserScreen() {
+function ViewUserScreen() {
 
   const { id } = useParams();
 
@@ -39,21 +39,7 @@ function UserScreen() {
     }
   }
 
-  const update = async () => {
-    const result = await updateUser(id, formUser);
-    return result !== undefined;
-  }
-
-  const save = async () => {
-    let result 
-    if (id !='0' ) {
-      result = await update();
-      result ? setSuccess("Updated user") : setError("User not updated");
-    } else {
-      result = await addUser(formUser);
-      result ? setSuccess("User added") : setError("User not added");
-    }
-  }
+ 
 
   return (
     <Container>
@@ -64,22 +50,21 @@ function UserScreen() {
             { success && <Alert severity="success">{success}</Alert>}
             { error && <Alert severity="error">{error}</Alert>}
             <Typography variant="h4">
-              Add/Edit user
+              Usuario {formUser.name}
             </Typography>
           </Grid>
         </Grid>
         <Grid container marginTop={3}>
           <Grid item md={4} sm={3} xs={0}></Grid>
           <Grid item md={4} sm={6} xs={12}>
-            <TextField type="text" name="name" value={formUser.name} onChange={handleChange} fullWidth={true} label="Name" variant="outlined" />
+            <TextField type="text" disabled name="name" value={formUser.name} onChange={handleChange} fullWidth={true} label="Name" variant="outlined" />
             <br/><br/>
-            <TextField type="text" name="role" value={formUser.role} onChange={handleChange} fullWidth={true} label="Role" variant="outlined" />
+            <TextField type="text" disabled name="role" value={formUser.role} onChange={handleChange} fullWidth={true} label="Role" variant="outlined" />
             <br/><br/>
-            <TextField type="text" name="salary" value={formUser.salary} onChange={handleChange} fullWidth={true} label="Salary" variant="outlined" />
+            <TextField type="text" disabled name="salary" value={formUser.salary} onChange={handleChange} fullWidth={true} label="Salary" variant="outlined" />
             <br/><br/>
-            <TextField type="text" name="address" value={formUser.address} onChange={handleChange} fullWidth={true} label="Address" variant="outlined" />
+            <TextField type="text" disabled name="address" value={formUser.address} onChange={handleChange} fullWidth={true} label="Address" variant="outlined" />
             <br/><br/>
-            <Button variant="outlined" onClick={save} >Save</Button>
             <NavLink 
                 to={`/users`} 
                 className="btn btn-info mx-2"
@@ -91,4 +76,4 @@ function UserScreen() {
   );
 }
 
-export default UserScreen;
+export default ViewUserScreen;

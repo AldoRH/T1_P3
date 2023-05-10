@@ -11,6 +11,8 @@ import About from "./screens/About";
 import Terms from "./screens/TermsAndConditions";
 import UsersScreen from './screens/UsersScreen';
 import User from './screens/UserScreen';
+import LoginScreen from './screens/LoginScreen';
+import ViewUserScreen from './screens/ViewUserScreen';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -22,10 +24,12 @@ root.render(
       <ResponsiveAppBar/>
       <Routes>
             <Route path="/" element={<Home/>}/>
+            <Route path='/login' element={<LoginScreen/>} />
             <Route path="/users" element={<UsersScreen/>}/>
             <Route path="/about/:id" element={<About/>}/>
             <Route path="/terms-and-conditions" element={<Terms/>}/>
-            <Route path="/user/:id" element={<User/>}/>
+            <Route path="/users/:id" element={<User/>}/>
+            <Route path="/view/:id" element={<ViewUserScreen/>}/>
 
         </Routes>
     </Router>
